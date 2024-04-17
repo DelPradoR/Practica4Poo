@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Usuario
+ */
+
+public class Jugador {
+    private ArrayList<Carta> mano;
+    
+    public Jugador(){
+        mano = new ArrayList();
+        
+    }
+    
+    //Recibe las cartas
+    public void recibirMano(ArrayList<Carta> manoDeJugador){
+        mano = manoDeJugador;
+        
+    }
+    
+    //Metodo que agarra una carta de la mano del jugador
+    public Carta agarrarCarta(int numeroCarta){
+        return mano.remove(numeroCarta);
+    }
+    
+    public void imprimirMano(){
+        mano.toString();
+    }
+    
+    //Metodo para agarrar la carta de la Baraja
+     
+}
