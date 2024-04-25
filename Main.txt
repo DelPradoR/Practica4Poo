@@ -1,0 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.labpoo.juegodelosseisesp4;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Usuario
+ */
+public class JuegoDeLosSeisesP4 {
+
+    public static void main(String[] args) {
+        Seises seises = new Seises();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingresa cuantos jugadores van a jugar (De 2 a 4 jugadores): ");
+        int numeroDeJugadores = scanner.nextInt();
+        seises.inscribirJugador(numeroDeJugadores);
+        seises.jugar();
+    }
+}

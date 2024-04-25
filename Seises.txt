@@ -1,0 +1,100 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.labpoo.juegodelosseisesp4;
+import java.util.ArrayList;
+/**
+ *
+ * @author Usuario
+ */
+public class Seises {
+    
+    private Baraja laBaraja;
+    private ArrayList<Jugador> jugadores;
+    private int numJugadores;
+    
+    public Seises(){
+        laBaraja = new Baraja();
+        jugadores = new ArrayList();
+    }
+    
+    public void inscribirJugador(int numJugadores) {
+    this.numJugadores = numJugadores;
+    for (int i = 0; i < numJugadores; i++) {
+        jugadores.add(new Jugador());
+        }
+    }
+    
+    public void repartirBaraja(int numJugadores) {
+    this.numJugadores = numJugadores;
+    int numCartas;
+    
+    if (jugadores.isEmpty()) {
+        System.out.println("No hay jugadores inscritos.");
+        return;
+    } else {
+        switch (numJugadores) {
+            case 2:
+                numCartas = 24;
+                break;
+            case 3:
+                numCartas = 16;
+                break;
+            case 4:
+                numCartas = 12;
+                break;
+            default:
+                System.out.println("Solo pueden jugar de 2 a 4 jugadores");
+                return;
+        }
+
+        int numCartasPorJugador = numCartas / numJugadores;
+        int cartaActual = 0;
+
+        for (int i = 0; i < numJugadores; i++) {
+            ArrayList<Carta> manoJugador = new ArrayList<>();
+            for (int j = 0; j < numCartasPorJugador; j++) {
+                manoJugador.add(laBaraja.get(cartaActual)); // Utiliza el método get de Baraja
+                cartaActual++;
+            }
+            jugadores.get(i).recibirMano(manoJugador);
+        }
+    }
+}
+    
+    public void jugar() {
+    // Repartir las cartas a los jugadores
+    repartirBaraja(numJugadores);
+    
+    while (true) {
+        for (Jugador jugador : jugadores) {
+            
+            System.out.println("Mano del jugador: ");
+            jugador.imprimirMano();
+            
+            Carta cartaJugada = null;
+            boolean cartaValida = false;
+            while (!cartaValida) {
+                cartaJugada = jugador.elegirCarta();
+                
+                if (cartaJugada != null && jugador.getMano().contains(cartaJugada)) {
+                    cartaValida = true;
+                } else {
+                    System.out.println("¡Carta no válida! Intenta de nuevo.");
+                }
+            }
+            
+            System.out.println("El jugador " + jugador + " ha jugado la carta: " + cartaJugada);
+            
+            jugador.getMano().remove(cartaJugada);
+            
+            if (jugador.getMano().isEmpty()) {
+                System.out.println("¡El jugador " + jugador + " ha ganado!");
+                return;
+                }
+            }
+        }
+    }
+}
+

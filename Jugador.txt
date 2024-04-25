@@ -1,0 +1,60 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.labpoo.juegodelosseisesp4;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Usuario
+ */
+public class Jugador {
+    private ArrayList<Carta> mano;
+    
+    public Jugador(){
+        mano = new ArrayList();
+    }
+    
+    //Recibe las cartas
+    public void recibirMano(ArrayList<Carta> manoDeJugador){
+        mano = manoDeJugador;
+        
+    }
+    
+    //Metodo que agarra una carta de la mano del jugador
+    public Carta agarrarCarta(int numeroCarta){
+        return mano.remove(numeroCarta);
+    }
+    
+    public void imprimirMano() {
+    System.out.println("Mano del jugador:");
+    for (int i = 0; i < mano.size(); i++) {
+        System.out.println((i+1) + ". " + mano.get(i).toString());
+    }
+}
+    
+    public Carta elegirCarta() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Elige una carta para jugar (ingresa el número de la carta): ");
+        for (int i = 0; i < mano.size(); i++) {
+            System.out.println((i+1) + ". " + mano.get(i).toString());
+        }
+        int seleccion = sc.nextInt();
+       
+        if (seleccion >= 1 && seleccion <= mano.size()) {
+            return mano.get(seleccion - 1);
+        } else {
+            System.out.println("Selección inválida. Por favor, elige una carta válida.");
+            return null;
+        }
+    }
+    
+    //Metodo para agarrar la carta de la Baraja
+    public ArrayList<Carta> getMano() {
+        return mano;
+    }
+    
+}
