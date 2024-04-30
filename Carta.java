@@ -38,6 +38,14 @@ public class Carta {
     public boolean getIsVolteada(){
         return isVolteada;
     }
+    public String imprimirVolteada(){
+        if(getIsVolteada()==true){
+           return "|     "+"     |";
+
+        }else{
+            return "|"+valor+" "+palo+"|";
+        }
+    }
     public void voltearCarta(){
         if(isVolteada==true){
             isVolteada=false;
@@ -47,7 +55,7 @@ public class Carta {
         }
     }
     public String toString(){
-        return "|"+valor+" "+palo+"| \n";
+        return "|"+valor+" "+palo+"|";
     }
     
 }

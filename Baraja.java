@@ -10,6 +10,8 @@ package computacion.practica4;
  */
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Collections;
+
 public class Baraja {
     private ArrayList <Carta> LaBaraja;
     private String[] losPalos={"Copas","Espadas","Oros","Bastos"};
@@ -17,12 +19,12 @@ public class Baraja {
     
 public Baraja(){
     LaBaraja=new ArrayList();
-    
+    generarCartas();
 }
 public void generarCartas(){
      for(int i=0;i<losPalos.length;i++){
          for(int j=1;j<=12;j++){
-             LaBaraja.add(new Carta(j,losPalos[i],true));
+             LaBaraja.add(new Carta(j,losPalos[i],false));
          }
 } 
 }
@@ -43,4 +45,18 @@ public void mostrarCartas(){
                 filter(s->palo.equalsIgnoreCase(s.getPalo()))
                 .forEach(s->System.out.println(s));
     }
+  
+  public int size() {
+        return LaBaraja.size();
+    }
+    
+    public Carta get(int cont) {
+    return LaBaraja.get(cont);
+}
+    public void mezclarBaraja(){
+      Collections.shuffle(LaBaraja);
+    }
+    
+
+  
 }
